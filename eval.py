@@ -18,8 +18,6 @@ parser = argparse.ArgumentParser(
     description="Script to evaluate a neural network model"
 )
 parser.add_argument("MODEL_NAME", type=str, help="Name of experiment to use")
-parser.add_argument('-t', '--evaluate_test_set', action='store_true')
-parser.add_argument('-a', '--evaluate_all', action='store_true')
 parser.add_argument('-i', '--iter', type=int, help='which iteration to use')
 parser.add_argument('-d', '--dataset', type=str, help='Select which dataset to evaluate.')
 
@@ -27,8 +25,6 @@ parser.add_argument('-d', '--dataset', type=str, help='Select which dataset to e
 if __name__ == "__main__":
     args = parser.parse_args()
 
-    evaluate_test_set = args.evaluate_test_set
-    evaluate_all = args.evaluate_all
     dataset = args.dataset
     assert dataset is not None, 'Please, provide dataset to segment.'
     all_datasets = [f for f in next(os.walk(sys_config.data_base))[1] if f[:2] != '__']
@@ -42,8 +38,6 @@ if __name__ == "__main__":
         assert dataset in all_datasets, 'Dataset "{0}" not available. \
             Please, choose one of the following: {1}'.format(dataset, all_datasets)
 
-    if evaluate_test_set and evaluate_all:
-        raise ValueError('evaluate_all and evaluate_test_set cannot be chosen together!')
 
     use_iter = args.iter
     if use_iter:
@@ -54,24 +48,13 @@ if __name__ == "__main__":
     config_module = config_file.split('/')[-1].rstrip('.py')
     exp_config = SourceFileLoader(config_module, os.path.join(config_file)).load_module()
 
-    if evaluate_test_set:
-        logging.warning('EVALUATING ON TEST SET')
-        output_path = os.path.join(model_path, dataset, 'predictions_testset')
-    elif evaluate_all:
-        logging.warning('EVALUATING ON ALL DATA')
-        output_path = []
-        output_path.append(os.path.join(model_path, dataset, 'predictions'))
-        output_path.append(os.path.join(model_path, dataset, 'predictions_testset'))
-    else:
-        logging.warning('EVALUATING ON VALIDATION SET')
-        output_path = os.path.join(model_path, dataset, 'predictions')
-
-
+    output_path = os.path.join(model_path, dataset, 'predictions')
+    logging.warning('Saving segmentations on {}'.format(output_path))
 
     model = Model(exp_config)
     database = dataset if '-' not in dataset else datasets
 
-    for outp, subset in zip(output_path, ['training', 'testing']):
+    for outp, subset in zip([output_path], ['training', 'testing']):
         path_pred = os.path.join(outp, 'prediction')
         path_image = os.path.join(outp, 'image')
         utils_gen.makefolder(path_pred)
