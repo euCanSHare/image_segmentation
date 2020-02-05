@@ -3,8 +3,8 @@ import numpy as np
 
 from tfwrapper import utils
 
-# from tensorflow.contrib.layers import variance_scaling_initializer, xavier_initializer
-from tensorflow.keras.initializers import he_normal, he_uniform, glorot_normal, glorot_uniform
+from tensorflow.contrib.layers import variance_scaling_initializer, xavier_initializer
+# from tensorflow.keras.initializers import he_normal, he_uniform, glorot_normal, glorot_uniform
 
 def max_pool_layer2d(x, name, kernel_size=(2, 2), strides=(2, 2), padding="SAME"):
     '''
@@ -615,19 +615,19 @@ def get_weight_variable(shape, name=None, type='xavier_uniform', regularize=True
 
     initialise_from_constant = False
     if type == 'xavier_uniform':
-        # initial = xavier_initializer(uniform=True, dtype=tf.float32)
-        initial = glorot_uniform()
+        initial = xavier_initializer(uniform=True, dtype=tf.float32)
+        # initial = glorot_uniform()
     elif type == 'xavier_normal':
-        # initial = xavier_initializer(uniform=False, dtype=tf.float32)
-        initial = glorot_normal()
+        initial = xavier_initializer(uniform=False, dtype=tf.float32)
+        # initial = glorot_normal()
     elif type == 'he_normal':
-        # initial = variance_scaling_initializer(uniform=False, factor=2.0, mode='FAN_IN', dtype=tf.float32)
-        initial = he_normal()
+        initial = variance_scaling_initializer(uniform=False, factor=2.0, mode='FAN_IN', dtype=tf.float32)
+        # initial = he_normal()
     elif type == 'he_uniform':
-        # initial = variance_scaling_initializer(uniform=True, factor=2.0, mode='FAN_IN', dtype=tf.float32)
-        initial = he_uniform()
+        initial = variance_scaling_initializer(uniform=True, factor=2.0, mode='FAN_IN', dtype=tf.float32)
+        # initial = he_uniform()
     # elif type == 'caffe_uniform':
-    #     initial = variance_scaling_initializer(uniform=True, factor=1.0, mode='FAN_IN', dtype=tf.float32)
+        # initial = variance_scaling_initializer(uniform=True, factor=1.0, mode='FAN_IN', dtype=tf.float32)
     elif type == 'simple':
         stddev = kwargs.get('stddev', 0.02)
         initial = tf.truncated_normal(shape, stddev=stddev, dtype=tf.float32)
