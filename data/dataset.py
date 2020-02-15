@@ -156,13 +156,12 @@ class Dataset(object):
     '''
     Class for handling data files for a given dataset.
     '''
-    def __init__(self, dataset_name, subset='training', mode='2D', image_size=None, image_resolution=None):
+    def __init__(self, datasets, mode='2D', image_size=None, image_resolution=None):
         '''
         Constructor. It defines the configuration for the dataset handler.
         Parameters:
             data_base: Path to datasets.
-            dataset_name: The dataset name to consider.
-            subset: Set to return: train or test.
+            datasets: Array of file paths to consider.
             mode: Type of data: 2D or 3D.
             image_size: Desired final image size for cropping.
             image_resolution: Desired final image resolution.
@@ -170,20 +169,11 @@ class Dataset(object):
         self.mode = mode
         self.image_size = image_size
         self.image_resolution = image_resolution
-        if isinstance(dataset_name, str):
-            module = importlib.import_module('data.{0}'.format(dataset_name))
-            handler = getattr(module, dataset_name[0].upper() + dataset_name[1:])
-            generator = handler(subset)
-            # File dictionaries containing data images.
-            self.files = generator.get_files()
-        else:
-            self.files = []
-            for db in dataset_name:
-                module = importlib.import_module('data.{0}'.format(db))
-                handler = getattr(module, db[0].upper() + db[1:])
-                generator = handler(subset)
-                # File dictionaries containing data images.
-                self.files += generator.get_files()
+        module = importlib.import_module('data.generichandler')
+        handler = getattr(module, 'GenericHandler')
+        generator = handler(datasets)
+        # File dictionaries containing data images.
+        self.files = generator.get_files()
         self.volumes = []
         self.volumes_index = {}
         self.process_volumes()
