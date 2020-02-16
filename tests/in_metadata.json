@@ -1,7 +1,7 @@
 [
     {
         "_id": "unique_file_id_5e14abe0a37012.29503905",
-        "file_path": "/deepupf/data/mic/training/patient001/patient001_frame01.nii.gz",
+        "file_path": "/home/user/image_segmentation/data/mic/training/patient001/patient001_frame01.nii.gz",
         "file_type": "NIFTI",
         "data_type": "bioimage",
         "compressed": "GZ",
@@ -28,7 +28,7 @@
     },
     {
         "_id": "unique_file_id_5e14abe0a37012.29503906",
-        "file_path": "/deepupf/data/mic/training/patient002/patient002_frame01.nii.gz",
+        "file_path": "/home/user/image_segmentation/data/mic/training/patient002/patient002_frame01.nii.gz",
         "file_type": "NIFTI",
         "data_type": "bioimage",
         "compressed": "GZ",
@@ -55,7 +55,7 @@
     },
     {
         "_id": "unique_file_id_5e14abe0a37012.29503907",
-        "file_path": "/deepupf/data/mic/training/patient003/patient003_frame01.nii.gz",
+        "file_path": "/home/user/image_segmentation/data/mic/training/patient003/patient003_frame01.nii.gz",
         "file_type": "NIFTI",
         "data_type": "bioimage",
         "compressed": "GZ",
@@ -82,7 +82,7 @@
     },
     {
         "_id": "unique_file_id_5e14abe0a37012.29503908",
-        "file_path": "/deepupf/models/unet2D_bn_modified_wxent_acdc_rot",
+        "file_path": "/home/user/image_segmentation/models/unet2D_bn_modified_wxent_acdc_rot",
         "file_type": "TXT",
         "data_type": "deep_learning_model",
         "compressed": 0,

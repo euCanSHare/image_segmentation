@@ -4,9 +4,9 @@
             "file": {
                 "file_type": "NIFTI",
                 "sources": [
-                    "/deepupf/data/mic/training/patient001/patient001_frame01.nii.gz"
+                    "/home/user/image_segmentation/data/mic/training/patient001/patient001_frame01.nii.gz"
                 ],
-                "file_path": "/deepupf/data/mic/training/patient001/patient001_frame01_mask.nii.gz",
+                "file_path": "/home/user/image_segmentation/data/mic/training/patient001/patient001_frame01_mask.nii.gz",
                 "meta_data": {},
                 "data_type": "image_mask"
             },
@@ -18,9 +18,9 @@
             "file": {
                 "file_type": "NIFTI",
                 "sources": [
-                    "/deepupf/data/mic/training/patient002/patient002_frame01.nii.gz"
+                    "/home/user/image_segmentation/data/mic/training/patient002/patient002_frame01.nii.gz"
                 ],
-                "file_path": "/deepupf/data/mic/training/patient002/patient002_frame01_mask.nii.gz",
+                "file_path": "/home/user/image_segmentation/data/mic/training/patient002/patient002_frame01_mask.nii.gz",
                 "meta_data": {},
                 "data_type": "image_mask"
             },
@@ -32,9 +32,9 @@
             "file": {
                 "file_type": "NIFTI",
                 "sources": [
-                    "/deepupf/data/mic/training/patient003/patient003_frame01.nii.gz"
+                    "/home/user/image_segmentation/data/mic/training/patient003/patient003_frame01.nii.gz"
                 ],
-                "file_path": "/deepupf/data/mic/training/patient003/patient003_frame01_mask.nii.gz",
+                "file_path": "/home/user/image_segmentation/data/mic/training/patient003/patient003_frame01_mask.nii.gz",
                 "meta_data": {},
                 "data_type": "image_mask"
             },
@@ -71,7 +71,7 @@
     ],
     "arguments": [
         {
-            "value": "/deepupf/tests/run000",
+            "value": "/home/user/image_segmentation/tests/run000",
             "name": "execution"
         },
         {
