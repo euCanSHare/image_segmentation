@@ -16,6 +16,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 """
+import os
 import sys
 import json
 import logging
@@ -99,11 +100,13 @@ def main_json(config, in_metadata, out_metadata):
             _in = json.load(in_meta)
             conf = json.load(open(config))
             conf['output_files'] = []
+            out_path = [c['value'] for c in conf['arguments'] if c['name'] == 'execution'][0]
             for inpf in conf['input_files']:
                 aux = [i for i in _in if i['_id'] == inpf['value']]
                 if aux[0]['data_type'] != 'bioimage':
                     continue
-                path = aux[0]['file_path']
+                filepath = aux[0]['file_path']
+                path = os.path.join(out_path, os.path.basename(filepath))
                 npath = path.rstrip('.nii.gz') + '_mask.nii.gz'
                 new_file = {
                     "name": "mask",

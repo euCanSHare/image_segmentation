@@ -128,12 +128,13 @@ def score_data(model, output_folder, model_path, datasets, exp_config, do_postpr
             logging.info('Evaluation of volume took {0} secs.'.format(elapsed_time))
 
             # Save prediced mask
-            out_file_name = volume.filepath.rstrip('.nii.gz') + '_mask.nii.gz'
+            out_file_name = os.path.basename(volume.filepath).rstrip('.nii.gz') + '_mask.nii.gz'
+            out_file_path = os.path.join(output_folder, out_file_name)
             out_affine = img_dat[1]
             out_header = img_dat[2]
 
-            logging.info('saving to: {}'.format(out_file_name))
-            utils_nii.save_nii(out_file_name, prediction_arr, out_affine, out_header)
+            logging.info('saving to: {}'.format(out_file_path))
+            utils_nii.save_nii(out_file_path, prediction_arr, out_affine, out_header)
 
         logging.info('Average time per volume: {}'.format(total_time/total_volumes))
 

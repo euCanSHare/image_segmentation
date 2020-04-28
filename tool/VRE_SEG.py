@@ -81,9 +81,12 @@ class SEG_RUNNER(Tool):
             logger.debug("Execution path: {}".format(execution_path))
 
             # Set file names for output files (with random name if not predefined)
+            output_path = ''
             for key in output_files.keys():
                 if output_files[key] is not None:
                     pop_output_path = os.path.abspath(output_files[key])
+                    if output_path == '':
+                        output_path = os.path.dirname(pop_output_path)
                     self.populable_outputs[key] = pop_output_path
                     output_files[key] = pop_output_path
                 else:
@@ -103,7 +106,7 @@ class SEG_RUNNER(Tool):
                     continue
 
             # Segment images
-            run(model, datasets)
+            run(model, datasets, output_path)
 
             output_metadata = {}
             for key in output_files.keys():
