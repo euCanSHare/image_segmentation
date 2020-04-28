@@ -1,7 +1,7 @@
 import os
 import glob
 import logging
-from importlib.machinery import SourceFileLoader
+from importlib import machinery
 
 import config.system as sys_config
 from model import Model
@@ -13,7 +13,7 @@ def run(model_name, datasets):
     model_path = os.path.join(sys_config.log_root, model_name)
     config_file = glob.glob(model_path + '/*py')[0]
     config_module = config_file.split('/')[-1].rstrip('.py')
-    exp_config = SourceFileLoader(config_module, os.path.join(config_file)).load_module()
+    exp_config = machinery.SourceFileLoader(config_module, os.path.join(config_file)).load_module()
 
     output_path = os.path.dirname(datasets[0])
     logging.warning('Saving segmentations on {}'.format(output_path))
