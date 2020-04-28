@@ -95,7 +95,7 @@ class SEG_RUNNER(Tool):
             # Prepare file paths
             for key in input_files.keys():
                 if key == 'model':
-                    model = os.path.basename(input_files[key])
+                    model = input_files[key]
                 elif key == 'images':
                     datasets = input_files[key]
                 else:

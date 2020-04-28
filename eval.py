@@ -8,9 +8,8 @@ from model import Model
 from evaluate_patients import score_data as evaluation
 
 
-def run(model_name, datasets):
+def run(model_path, datasets):
 
-    model_path = os.path.join(sys_config.log_root, model_name)
     config_file = glob.glob(model_path + '/*py')[0]
     config_module = config_file.split('/')[-1].rstrip('.py')
     exp_config = machinery.SourceFileLoader(config_module, os.path.join(config_file)).load_module()
