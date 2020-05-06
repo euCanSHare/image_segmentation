@@ -210,8 +210,10 @@ class JSONApp(WorkflowApp):  # pylint: disable=too-few-public-methods
                 "sources": metadata.sources
             }
 
-        for role, path in output_files.items():
-            metadata = output_metadata[role]
+        for idx, ofile in enumerate(output_files):
+            role = ofile["name"]
+            path = ofile["file_path"]
+            metadata = output_metadata["output_files"][idx]
             if isinstance(path, (list, tuple)):  # check allow_multiple?
                 assert (
                     isinstance(metadata, (list, tuple)) and

@@ -119,7 +119,7 @@ class SEG_RUNNER(Tool):
                     meta.sources = [ofile["file_path"].rstrip('_mask.nii.gz') + '.nii.gz']
 
                     # Append new element in output metadata
-                    logger.info('Update metadata with key {} and value {}'.format(key, meta.file_path))
+                    logger.info('Update metadata value {}'.format(meta.file_path))
                     out_meta.append(meta)
 
                 else:
