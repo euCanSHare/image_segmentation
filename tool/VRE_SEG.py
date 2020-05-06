@@ -52,7 +52,7 @@ class SEG_RUNNER(Tool):
             if isinstance(v, list):
                 self.configuration[k] = ' '.join(v)
 
-        self.populable_outputs = {}
+        self.populable_outputs = []
 
 
     def run(self, input_files, input_metadata, output_files):
@@ -82,13 +82,12 @@ class SEG_RUNNER(Tool):
 
             # Set file names for output files (with random name if not predefined)
             output_path = ''
-            for key in output_files.keys():
-                if output_files[key] is not None:
-                    pop_output_path = os.path.abspath(output_files[key])
+            for ofile in output_files:
+                if ofile["file_path"] is not None:
+                    pop_output_path = os.path.abspath(ofile["file_path"])
                     if output_path == '':
                         output_path = os.path.dirname(pop_output_path)
-                    self.populable_outputs[key] = pop_output_path
-                    output_files[key] = pop_output_path
+                    self.populable_outputs.append(pop_output_path)
                 else:
                     errstr = "The output_file[{}] can not be located. Please specify its expected path.".format(key)
                     logger.error(errstr)
@@ -108,24 +107,25 @@ class SEG_RUNNER(Tool):
             # Segment images
             run(model, datasets, output_path)
 
-            output_metadata = {}
-            for key in output_files.keys():
-                if os.path.isfile(output_files[key]):
+            out_meta = []
+            for ofile in output_files:
+                if os.path.isfile(ofile["file_path"]):
                     meta = Metadata()
-                    meta.file_path = output_files[key]  # Set file_path for output files
+                    meta.file_path = ofile["file_path"]  # Set file_path for output files
                     meta.data_type = 'image_mask'
                     meta.file_type = 'NIFTI'
 
                     # Set sources for output files
-                    meta.sources = [output_files[key].rstrip('_mask.nii.gz') + '.nii.gz']
+                    meta.sources = [ofile["file_path"].rstrip('_mask.nii.gz') + '.nii.gz']
 
                     # Append new element in output metadata
                     logger.info('Update metadata with key {} and value {}'.format(key, meta.file_path))
-                    output_metadata.update({key: meta})
+                    out_meta.append(meta)
 
                 else:
-                    logger.warning("Output {} not found. Path {} not exists".format(key, output_files[key]))
+                    logger.warning("Output not found. Path {} does not exist".format(ofile["file_path"]))
 
+            output_metadata = {'output_files': out_meta}
             logger.debug("Output metadata created")
 
             return output_files, output_metadata

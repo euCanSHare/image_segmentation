@@ -142,9 +142,12 @@ class JSONApp(WorkflowApp):  # pylint: disable=too-few-public-methods
             else:
                 input_ids[role] = input_id
 
-        output_files = {}
+        output_files = []
         for output_file in configuration["output_files"]:
-            output_files[output_file["name"]] = output_file["file"].get("file_path", None)
+            output_files.append({
+                "name": output_file["name"],
+                "file_path": output_file["file"].get("file_path", None)
+            })
 
         arguments = {}
         for argument in configuration["arguments"]:
