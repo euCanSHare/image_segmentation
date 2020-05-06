@@ -43,7 +43,7 @@ class PyCOMPSsApp(App):  # pylint: disable=too-few-public-methods
         Adds a wait command to ensure asynchronous tasks are
         terminated.
         """
-        compss_wait_on(output_files.values())
+        # compss_wait_on(output_files.values())
         # Please note that the _post_run can not be done before waiting for
         # the output files.
         # The compss_wait_on performs a synchronization and retrieves the
