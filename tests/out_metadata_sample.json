@@ -6,7 +6,7 @@
             ],
             "meta_data": {},
             "data_type": "image_mask",
-            "name": "mask1",
+            "name": "masks",
             "file_type": "NIFTI",
             "file_path": "/home/user/image_segmentation/data/mic/training/patient002/patient002_frame01_mask.nii.gz"
         },
@@ -16,7 +16,7 @@
             ],
             "meta_data": {},
             "data_type": "image_mask",
-            "name": "mask2",
+            "name": "masks",
             "file_type": "NIFTI",
             "file_path": "/home/user/image_segmentation/data/mic/training/patient003/patient003_frame01_mask.nii.gz"
         },
@@ -26,7 +26,7 @@
             ],
             "meta_data": {},
             "data_type": "image_mask",
-            "name": "mask0",
+            "name": "masks",
             "file_type": "NIFTI",
             "file_path": "/home/user/image_segmentation/data/mic/training/patient001/patient001_frame01_mask.nii.gz"
         }

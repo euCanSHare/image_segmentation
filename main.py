@@ -109,7 +109,7 @@ def main_json(config, in_metadata, out_metadata):
                 path = os.path.join(out_path, os.path.basename(filepath))
                 npath = path.rstrip('.nii.gz') + '_mask.nii.gz'
                 new_file = {
-                    "name": "mask",
+                    "name": "masks",
                     "required": True,
                     "allow_multiple": False,
                     "file": {
