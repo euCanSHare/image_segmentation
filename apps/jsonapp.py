@@ -98,6 +98,8 @@ class JSONApp(WorkflowApp):  # pylint: disable=too-few-public-methods
         for role, metadata in input_metadata.items():
             if isinstance(metadata, (list, tuple)):  # check allow_multiple?
                 input_files[role] = [el.file_path for el in metadata]
+            elif role == 'images':
+                input_files[role] = [metadata.file_path]
             else:
                 input_files[role] = metadata.file_path
 
