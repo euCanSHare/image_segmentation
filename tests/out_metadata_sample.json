@@ -4,7 +4,12 @@
             "sources": [
                 "/home/user/image_segmentation/data/mic/training/patient002/patient002_frame01.nii.gz"
             ],
-            "meta_data": {},
+            "meta_data": {
+                "phase": "ED",
+                "labels": {
+                    "lv": 1, "myo": 2, "rv": 3
+                }
+            },
             "data_type": "image_mask",
             "name": "masks",
             "file_type": "NIFTI",
@@ -14,7 +19,12 @@
             "sources": [
                 "/home/user/image_segmentation/data/mic/training/patient003/patient003_frame01.nii.gz"
             ],
-            "meta_data": {},
+            "meta_data": {
+                "phase": "ES",
+                "labels": {
+                    "lv": 1, "myo": 2, "rv": 3
+                }
+            },
             "data_type": "image_mask",
             "name": "masks",
             "file_type": "NIFTI",
@@ -24,7 +34,12 @@
             "sources": [
                 "/home/user/image_segmentation/data/mic/training/patient001/patient001_frame01.nii.gz"
             ],
-            "meta_data": {},
+            "meta_data": {
+                "phase": "ED",
+                "labels": {
+                    "lv": 1, "myo": 2, "rv": 3
+                }
+            },
             "data_type": "image_mask",
             "name": "masks",
             "file_type": "NIFTI",
