@@ -93,6 +93,9 @@ class JSONApp(WorkflowApp):  # pylint: disable=too-few-public-methods
             else:
                 input_metadata[role] = input_metadata_ids[input_id]
 
+        # Output folder
+        input_metadata['output_folder'] = arguments['execution']
+
         # get paths from IDs
         input_files = {}
         for role, metadata in input_metadata.items():
@@ -100,6 +103,8 @@ class JSONApp(WorkflowApp):  # pylint: disable=too-few-public-methods
                 input_files[role] = [el.file_path for el in metadata]
             elif role == 'images':
                 input_files[role] = [metadata.file_path]
+            elif role == 'output_folder':
+                continue
             else:
                 input_files[role] = metadata.file_path
 
