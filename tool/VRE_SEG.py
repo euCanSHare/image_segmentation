@@ -105,7 +105,7 @@ class SEG_RUNNER(Tool):
                     continue
 
             # Segment images
-            masks = run(model, datasets, input_metadata['output_path'])
+            masks = run(model, datasets, input_metadata['output_folder'])
 
             output_files = []
             out_meta = []
