@@ -18,8 +18,8 @@ def run(model_path, datasets, output_path):
 
     model = Model(exp_config)
 
-    init_iteration = evaluation(model, output_path, model_path,
-                                datasets, exp_config=exp_config,
-                                do_postprocessing=True)
+    masks = evaluation(model, output_path, model_path,
+                       datasets, exp_config=exp_config,
+                       do_postprocessing=True)
 
-    return init_iteration
+    return masks

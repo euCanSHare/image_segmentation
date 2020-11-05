@@ -105,25 +105,23 @@ class SEG_RUNNER(Tool):
                     continue
 
             # Segment images
-            run(model, datasets, output_path)
+            masks = run(model, datasets, output_path)
 
+            output_files = []
             out_meta = []
-            for ofile in output_files:
-                if os.path.isfile(ofile["file_path"]):
+            for _file, _meta in masks:
+                if os.path.isfile(_file):
                     meta = Metadata()
-                    meta.file_path = ofile["file_path"]  # Set file_path for output files
+                    meta.file_path = _file  # Set file_path for output files
                     meta.data_type = 'image_mask'
                     meta.file_type = 'NIFTI'
-
-                    # Set sources for output files
-                    meta.sources = [ofile["file_path"].rstrip('_mask.nii.gz') + '.nii.gz']
-
-                    # Append new element in output metadata
-                    logger.info('Update metadata value {}'.format(meta.file_path))
+                    meta.meta_data = _meta
                     out_meta.append(meta)
-
+                    output_files.append({
+                        'name': 'image_mask', 'file_path': _file
+                    })
                 else:
-                    logger.warning("Output not found. Path {} does not exist".format(ofile["file_path"]))
+                    logger.warning("Output not found. Path \"{}\" does not exist".format(_file))
 
             output_metadata = {'output_files': out_meta}
             logger.debug("Output metadata created")

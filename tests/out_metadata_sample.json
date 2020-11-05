@@ -2,10 +2,25 @@
     "output_files": [
         {
             "sources": [
+                "/home/user/image_segmentation/data/mic/training/patient001/patient001_4d.nii.gz"
+            ],
+            "meta_data": {
+                "labels": {
+                    "lv": 1, "myo": 2, "rv": 3
+                },
+                "ED": 1,
+                "ES": 11
+            },
+            "data_type": "image_mask",
+            "name": "masks",
+            "file_type": "NIFTI",
+            "file_path": "/home/user/image_segmentation/data/mic/training/patient001/patient001_4d_label.nii.gz"
+        },
+        {
+            "sources": [
                 "/home/user/image_segmentation/data/mic/training/patient002/patient002_frame01.nii.gz"
             ],
             "meta_data": {
-                "phase": "ED",
                 "labels": {
                     "lv": 1, "myo": 2, "rv": 3
                 }
@@ -13,37 +28,7 @@
             "data_type": "image_mask",
             "name": "masks",
             "file_type": "NIFTI",
-            "file_path": "/home/user/image_segmentation/data/mic/training/patient002/patient002_frame01_mask.nii.gz"
-        },
-        {
-            "sources": [
-                "/home/user/image_segmentation/data/mic/training/patient003/patient003_frame01.nii.gz"
-            ],
-            "meta_data": {
-                "phase": "ES",
-                "labels": {
-                    "lv": 1, "myo": 2, "rv": 3
-                }
-            },
-            "data_type": "image_mask",
-            "name": "masks",
-            "file_type": "NIFTI",
-            "file_path": "/home/user/image_segmentation/data/mic/training/patient003/patient003_frame01_mask.nii.gz"
-        },
-        {
-            "sources": [
-                "/home/user/image_segmentation/data/mic/training/patient001/patient001_frame01.nii.gz"
-            ],
-            "meta_data": {
-                "phase": "ED",
-                "labels": {
-                    "lv": 1, "myo": 2, "rv": 3
-                }
-            },
-            "data_type": "image_mask",
-            "name": "masks",
-            "file_type": "NIFTI",
-            "file_path": "/home/user/image_segmentation/data/mic/training/patient001/patient001_frame01_mask.nii.gz"
+            "file_path": "/home/user/image_segmentation/data/mic/training/patient002/patient002_frame01_label.nii.gz"
         }
     ]
 }
