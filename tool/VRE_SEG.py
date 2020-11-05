@@ -89,7 +89,7 @@ class SEG_RUNNER(Tool):
                         output_path = os.path.dirname(pop_output_path)
                     self.populable_outputs.append(pop_output_path)
                 else:
-                    errstr = "The output_file[{}] can not be located. Please specify its expected path.".format(ofile)
+                    errstr = "The {} can not be located. Please specify its expected path.".format(ofile)
                     logger.error(errstr)
                     raise Exception(errstr)
 

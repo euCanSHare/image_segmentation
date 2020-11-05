@@ -189,7 +189,7 @@ def score_data(model, output_folder, model_path, datasets, exp_config, do_postpr
             reshaped = crop_or_pad(cine, header['dim'][1], header['dim'][2], header['dim'][3], header['dim'][4])   
             means = nib.Nifti1Image(reshaped, header=header, affine=np.eye(4))  
 
-            save_name = _file.split('.')[0] + '_label.nii.gz'
+            save_name = os.path.join(output_folder, os.path.basename(_file).split('.')[0] + '_label.nii.gz')
             print('Saving ', save_name)
             nib.save(means, save_name)
 
