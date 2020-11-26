@@ -189,6 +189,8 @@ def score_data(model, output_folder, model_path, datasets, exp_config, do_postpr
             reshaped = crop_or_pad(cine, header['dim'][1], header['dim'][2], header['dim'][3], header['dim'][4])   
 
             # Set header specifications for mask files
+
+            if reshaped.shape[-1] == 1: header['dim'][0] = 3
             header.set_data_dtype(np.uint8)
             means = nib.Nifti1Image(np.round(reshaped).astype(np.uint8), affine=nim.affine, header=header)  
 
@@ -198,7 +200,7 @@ def score_data(model, output_folder, model_path, datasets, exp_config, do_postpr
 
             metadata = {
                 'labels': LABELS,
-                'format': '3D'
+                'file_format': '3D'
             }
 
             if reshaped.shape[-1] > 1:
@@ -212,7 +214,7 @@ def score_data(model, output_folder, model_path, datasets, exp_config, do_postpr
                 metadata.update({
                     'ED': int(ed), 'ES': int(es)
                 })
-                metadata['format'] = '4D'
+                metadata['file_format'] = '4D'
 
             output_files.append((save_name, metadata))
 
