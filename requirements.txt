@@ -1,6 +1,6 @@
 scikit-image
 numpy
-tensorflow==1.13.2
+tensorflow==2.5.0
 nibabel
 pandas
 medpy
