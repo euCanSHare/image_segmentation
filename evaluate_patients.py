@@ -3,6 +3,7 @@ import re
 import glob
 import time
 import logging
+import traceback
 import numpy as np
 import nibabel as nib
 import tensorflow as tf
@@ -172,8 +173,9 @@ def score_data(model, output_folder, model_path, datasets, exp_config, do_postpr
                 header = nim.header
                 data = nim.get_fdata()
                 data = crop_or_pad(data, nx, ny, header['dim'][3], header['dim'][4])
-            except:
+            except Exception:
                 logging.info('Unable to read: {0}'.format(_file))
+                traceback.print_exc()
                 continue
 
             x_lst = cine_2_tensor_lst(data)
