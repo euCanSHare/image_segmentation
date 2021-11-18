@@ -174,6 +174,7 @@ def score_data(model, output_folder, model_path, datasets, exp_config, do_postpr
                 data = crop_or_pad(data, nx, ny, header['dim'][3], header['dim'][4])
             except:
                 logging.info('Unable to read: {0}'.format(_file))
+                continue
 
             x_lst = cine_2_tensor_lst(data)
             
